@@ -1,2 +1,4 @@
 # Python-specific
-**/pulumi-venv/*
+pulumi-venv
+doggone.egg-info
+**/__pycache__/*
