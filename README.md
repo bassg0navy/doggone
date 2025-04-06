@@ -1,6 +1,9 @@
-![](/images/doggone_rectangle.png)
+<p align="center" width="100%">
+    <img width="33%" src="https://raw.githubusercontent.com/bassg0navy/doggone/main/images/doggone_large_rectangle.png">
+</p>
+
 # doggone
-Doggone is a cli tool to corral one-off resources into state with the remaining cattle. It leverages Pulumi's automation API and GitHub provider. 
+Doggone is a cli tool to corral one-off resources back into state with the remaining cattle. It leverages Pulumi's automation API and GitHub provider. 
 
 
 ## Why Doggone?
