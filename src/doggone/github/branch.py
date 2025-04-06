@@ -4,6 +4,7 @@ import time
 import click
 from git import Repo
 
+main_branch = 'main'
 
 def create_feature_branch(local_repo_path, resource_name):
     """
@@ -20,7 +21,6 @@ def create_feature_branch(local_repo_path, resource_name):
     repo = Repo(local_repo_path)
 
     # Make sure we're on the main branch and up to date
-    main_branch = 'main'
     try:
         repo.git.checkout(main_branch)
         repo.git.pull()
@@ -62,6 +62,10 @@ def commit_changes(local_repo_path, resource_type, resource_name):
 
         repo.git.commit('-m', commit_message)
         repo.git.push('--set-upstream', 'origin', repo.active_branch.name)
+
+        # Once complete, return to main branch
+        repo.git.checkout(main_branch)
+        repo.git.pull()
 
         return True
     except Exception as e:
