@@ -44,9 +44,14 @@ export GITHUB_TOKEN=your_github_token
 
 
 # Usage
+Configure doggone
+```
+doggone context --project <pulumi project name> --stack <pulumi stack name: defaults to 'dev'> --git-repo <username/repo-name>
+```
+
 Import with GitHub Integration
 ```
-doggone import --resource-type bucket --id my-bucket --name my_bucket --create-pr --github-repo username/repo
+doggone import --resource-type <bucket> --resource-name <resource name> --resource-id <OCID, ARN, etc.> --file <__main__.py>
 ```
 
 ![PR Created w/ Template](/images/pr_creation.png)
