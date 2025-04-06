@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-    <img width="33%" src="https://raw.githubusercontent.com/bassg0navy/doggone/main/images/doggone_large_rectangle.png">
+    <img width="66%" src="https://raw.githubusercontent.com/bassg0navy/doggone/main/images/doggone_large_rectangle.png">
 </p>
 
 # doggone
