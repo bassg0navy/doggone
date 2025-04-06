@@ -5,19 +5,19 @@ import click
 from git import Repo
 
 
-def create_feature_branch(repo_path, resource_name):
+def create_feature_branch(local_repo_path, resource_name):
     """
     Create a new feature branch for the imported resource.
     
     Args:
-        repo_path: Path to the Git repository
+        local_repo_path: Path to the Git repository
         resource_name: Name of the imported resource
     
     Returns:
         Branch name
     """
     # Open the repository
-    repo = Repo(repo_path)
+    repo = Repo(local_repo_path)
 
     # Make sure we're on the main branch and up to date
     main_branch = 'main'
@@ -39,19 +39,19 @@ def create_feature_branch(repo_path, resource_name):
         click.echo(f"Error creating branch: {e}")
         return None
 
-def commit_changes(repo_path, resource_type, resource_name):
+def commit_changes(local_repo_path, resource_type, resource_name):
     """
     Commit the changes to the feature branch.
     
     Args:
-        repo_path: Path to the Git repository
+        local_repo_path: Path to the Git repository
         resource_type: Type of imported resource
         resource_name: Name of the imported resource
     
     Returns:
         Success status
     """
-    repo = Repo(repo_path)
+    repo = Repo(local_repo_path)
 
     # Check if __main__.py has changes
     try:
