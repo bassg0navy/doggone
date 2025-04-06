@@ -1,5 +1,5 @@
-# doggone ![](/images/doggone_small.png)
-Doggone is a cli tool to corral one-off resources into state with the remaining cattle. It leverages Pulumi's automation API and GitHub provider.
+# doggone
+Doggone is a cli tool to corral one-off resources into state with the remaining cattle. It leverages Pulumi's automation API and GitHub provider. ![](/images/doggone_logo.png)
 
 ## Why Doggone?
 Sure, "Operation: Click-Ops" achieves the same goal. However, resource imports can be tedious, error-prone, and often lack proper _(if any)_ documentation. Doggone solves these challenges with:
