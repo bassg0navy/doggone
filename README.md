@@ -3,7 +3,7 @@
 </p>
 
 # doggone
-Doggone is a cli tool to corral one-off infrastructure resources back into state with the rest of the heard. It leverages Pulumi's automation API and GitHub provider. 
+Doggone is a cli tool to corral one-off infrastructure resources back into state with the rest of the herd. It leverages Pulumi's automation API and GitHub provider. 
 
 
 ## Why Doggone?
