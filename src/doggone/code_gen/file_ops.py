@@ -1,8 +1,8 @@
 '''Module for functions that perform operations against local files'''
-from doggone.code_gen.resources import generate_resource_code
+from src.doggone.code_gen.resources import generate_resource_code
 
 def add_resource_to_main_file(
-    resource_type, resource_name, resource_properties,
+    resource_type, resource_name, resource_properties, repo_path,
     target_file="__main__.py"
 ):
     """
@@ -16,7 +16,7 @@ def add_resource_to_main_file(
     """
     try:
         # Read the existing file
-        with open(target_file, 'r', encoding='utf-8') as file:
+        with open(f"{repo_path}/{target_file}", 'r', encoding='utf-8') as file:
             content = file.read()
 
         # Generate the resource code
@@ -36,10 +36,14 @@ def add_resource_to_main_file(
             new_content = content + "\n\n" + resource_code
 
         # Write the updated content back to the file
-        with open(target_file, 'w', encoding='utf-8') as file:
+        with open(f"{repo_path}/{target_file}", 'w', encoding='utf-8') as file:
             file.write(new_content)
 
         return True, f"\nAdded {resource_type} resource '{resource_name}' to {target_file}"
+
+    except FileNotFoundError as e:
+        return False, f"""Target file: {target_file} not found. \n
+        Ensure file exists and check for typos in the '--file' option: {e}"""
 
     except Exception as e: # pylint: disable=broad-exception-caught
         return False, f"Error adding resource to {target_file}: {e}"

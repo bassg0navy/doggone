@@ -29,7 +29,6 @@ def import_infra(resource_type, resource_name, resource_id, namespace, compartme
     opts = pulumi.ResourceOptions(import_=import_id)
 
     # Create resource object
-    print(f"Namespace value before resource creation: '{namespace}'")
     resource_class(resource_name,
         # Required parameters
         compartment_id=compartment_id,

@@ -8,10 +8,10 @@ import subprocess
 import click
 from pulumi import automation as auto
 import oci
-from doggone.importer.base import import_infra
-from doggone.code_gen.file_ops import add_resource_to_main_file
-from doggone.github.pr import create_pull_request
-from doggone.github.branch import create_feature_branch, commit_changes
+from .importer.base import import_infra
+from .code_gen.file_ops import add_resource_to_main_file
+from .github.pr import create_pull_request
+from .github.branch import create_feature_branch, commit_changes
 
 # Configuration
 oci_config = oci.config.from_file(profile_name='TERRAFORM')
@@ -54,17 +54,10 @@ def cli():
 @click.option('--resource-name',
     help='Local name of resource to use within code'
 )
-@click.option('--add-to-code',
-    is_flag=True, default=True,
-    help='Add the imported resource to __main__.py'
-)
 @click.option('--file',
     default="__main__.py",
     help='Target Python file to add the resource code to'
 )
-# @click.option('--create-pr',
-#     is_flag=True, help='Create a pull request for the imported resource.'
-# )
 @click.option('--repo-path',
      default='.', help='Path to the Pulumi project repository.'
 )
@@ -73,10 +66,10 @@ def cli():
 )
 def resource_import(
     resource_type, resource_name, resource_id, file, repo_path,
-    github_repo='bassg0navy/pulumi_infra', add_to_code=True
+    github_repo='bassg0navy/pulumi_infra'
 ):
     '''
-    Corral resources into state using Pulumi automation API
+    Corral resources into state using Pulumi automation and GitHub API
     '''
     user_authenticated = auth_check()
 
@@ -101,47 +94,44 @@ def resource_import(
         stack.up(on_output=lambda msg: click.echo(msg)) # pylint: disable=unnecessary-lambda
         click.echo(f"\nSuccessfully imported {resource_type}: {resource_name}!")
 
-        if add_to_code:
-            # Get resource properties from the import result
-            properties = {
-                "name": resource_name,
-                "compartment_id": compartment_id,
-                "namespace": namespace,
-                # Add other properties as needed
-            }
-            # Log success of updating main file
-            # pylint: disable-next=unused-variable
-            success, message = add_resource_to_main_file(
-                resource_type,
-                resource_name,
-                properties,
-                file
-            )
-            click.echo(message)
+        # Get resource properties from the import result
+        properties = {
+            "name": resource_name,
+            "compartment_id": compartment_id,
+            "namespace": namespace,
+            # Add other properties as needed
+        }
+        # Log success of updating main file
+        # pylint: disable-next=unused-variable
+        success, message = add_resource_to_main_file(
+            resource_type,
+            resource_name,
+            properties,
+            repo_path,
+            file
+        )
+        click.echo(message)
 
-            # Create branch
-            click.echo("Creating feature branch...")
-            branch_name = create_feature_branch(repo_path, resource_name)
-            if not branch_name:
-                click.echo("Failed to create feature branch. PR creation aborted.")
-                return
+        # Create branch
+        click.echo("Creating feature branch...")
+        branch_name = create_feature_branch(repo_path, resource_name)
+        if not branch_name:
+            click.echo("Failed to create feature branch. PR creation aborted.")
+            return
 
-            # Commit changes
-            click.echo("Committing changes...")
-            if not commit_changes(repo_path, resource_type, resource_name):
-                click.echo("Failed to commit changes. PR creation aborted.")
-                return
+        # Commit changes
+        click.echo("Committing changes...")
+        if not commit_changes(repo_path, resource_type, resource_name):
+            click.echo("Failed to commit changes. PR creation aborted.")
+            return
 
-            # Create pull request
-            click.echo("Creating pull request...")
-            pr_url, error = create_pull_request(
-                github_repo, branch_name, resource_type, resource_name, id
-            )
-
-            if pr_url:
-                click.echo(f"Import complete! Review and merge the PR: {pr_url}")
-            else:
-                click.echo(f"Import complete, but PR creation failed: {error}")
+        # Create pull request
+        click.echo("Creating pull request...")
+        pr_url, error = create_pull_request(
+            github_repo, branch_name, resource_type, resource_name, id
+        )
+        if pr_url:
+            click.echo(f"Import complete! Review and merge the PR: {pr_url}")
 
 
     except Exception as e:

@@ -5,6 +5,7 @@ setup(
     name="doggone",
     version="0.1",
     packages=find_packages(),
+    package_dir={"doggone": "src/doggone"},
     install_requires=[
         "click",
         "pulumi",
@@ -13,6 +14,6 @@ setup(
     ],
     entry_points="""
         [console_scripts]
-        doggone=doggone:cli
+        doggone=src.doggone.cli:cli
     """,
 )
