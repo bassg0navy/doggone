@@ -1,4 +1,4 @@
-# doggone
+# doggone ![](/images/doggone_icon.jpg)
 Doggone is a cli tool to corral one-off resources into state with the remaining cattle. It leverages Pulumi's automation API and GitHub provider.
 
 ## Why Doggone?
