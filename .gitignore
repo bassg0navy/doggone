@@ -1,6 +1,9 @@
-# Python-specific
+# Python
 doggone.egg-info
 **/__pycache__/*
 .pulumi-venv
 *.egg-info/
 .venv
+
+# GitHub
+.DS_Store
