@@ -49,12 +49,16 @@ Configure doggone
 doggone context --project <pulumi project name> --stack <pulumi stack name: defaults to 'dev'> --git-repo <username/repo-name>
 ```
 
-Import with GitHub Integration
+Import with GitHub integration
 ```
 doggone import --resource-type <bucket> --resource-name <resource name> --resource-id <OCID, ARN, etc.> --file <__main__.py>
 ```
 
+Successful PR creation
 ![PR Created w/ Template](/images/pr_creation.png)
+
+Successful Pulumi stack update
+![PR Created w/ Template](/images/pulumi_update.png)
 
 ## Disclaimers
 **WARNING: This repository does not follow all best practices and should not be used in a production environment.** It is more/less a demonstration of a strong use-case for Pulumi's automation API and fairly stout GitHub integration.
