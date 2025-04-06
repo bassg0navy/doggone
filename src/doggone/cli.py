@@ -127,7 +127,7 @@ def resource_import(
 
         # Create pull request
         click.echo("Creating pull request...")
-        pr_url, error = create_pull_request(
+        pr_url, _ = create_pull_request(
             github_repo, branch_name, resource_type, resource_name, id
         )
         if pr_url:

@@ -1,5 +1,5 @@
 '''Module for functions that perform operations against local files'''
-from src.doggone.code_gen.resources import generate_resource_code
+from .resources import generate_resource_code
 
 def add_resource_to_main_file(
     resource_type, resource_name, resource_properties, repo_path,

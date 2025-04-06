@@ -4,8 +4,8 @@ from setuptools import setup, find_packages
 setup(
     name="doggone",
     version="0.1",
-    packages=find_packages(),
-    package_dir={"doggone": "src/doggone"},
+    package_dir={"": "src"},  # This tells setuptools the root package is under src/
+    packages=find_packages(where="src"),  # Find packages under src
     install_requires=[
         "click",
         "pulumi",
@@ -14,6 +14,6 @@ setup(
     ],
     entry_points="""
         [console_scripts]
-        doggone=src.doggone.cli:cli
+        doggone=doggone.cli:cli
     """,
 )
