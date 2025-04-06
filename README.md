@@ -3,7 +3,7 @@
 </p>
 
 # doggone
-Doggone is a cli tool to corral one-off resources back into state with the remaining cattle. It leverages Pulumi's automation API and GitHub provider. 
+Doggone is a cli tool to corral one-off infrastructure resources back into state with the rest of the heard. It leverages Pulumi's automation API and GitHub provider. 
 
 
 ## Why Doggone?
@@ -61,4 +61,7 @@ Successful Pulumi stack update
 ![PR Created w/ Template](/images/pulumi_update.png)
 
 ## Disclaimers
-**WARNING: This repository does not follow all best practices and should not be used in a production environment.** It is more/less a demonstration of a strong use-case for Pulumi's automation API and fairly stout GitHub integration.
+**WARNING: This repository does not follow all best practices and should not be used in a production environment.** It is more/less a demonstration of a strong use-case for Pulumi's automation API and fairly stout GitHub integration. It does not account for a plethora of important concerns:
++ Multi-cloud: OCI (Oracle Cloud Infrastructure) is the only supported provider
++ Variety of languages: supports infra code written in Python only
++ Resource types: supports import of object storage buckets only
