@@ -8,7 +8,7 @@ Doggone is a cli tool to corral one-off infrastructure resources back into state
 
 ## Why Doggone?
 Sure, "Operation: Click-Ops" achieves the same goal. However, resource imports can be tedious, error-prone, and often lack proper _(if any)_ documentation. Doggone solves these challenges with:
-+ Automated Code Generation: Add well-formatted code to your Pulumi files
++ Automated Code Generation: Add well-formatted code to your declarative Pulumi files
 + GitHub Integration: Create feature branches and pull requests for each import
 + Audit Trail: Document _who_ imported _what_ and _when_ with detailed PRs
 
