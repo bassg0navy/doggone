@@ -22,7 +22,7 @@ Sure, "Operation: Click-Ops" achieves the same goal. However, resource imports c
 
 ### Clone the repository
 ```
-git clone https://github.com/yourusername/doggone.git
+git clone https://github.com/bassg0navy/doggone.git
 cd doggone
 ```
 
